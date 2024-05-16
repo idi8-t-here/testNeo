@@ -3,7 +3,7 @@ return {
         config = function ()
             require('text-to-colorscheme').setup {
                 ai = {
-                        openai_api_key = "myopenapikey",
+                        openai_api_key = "sk-proj-Z4sl08XPsmLsjU1ihhrFT3BlbkFJ6IPGXMysJQIldBOXksYj",
                         gpt_model = "gpt-3.5-turbo-16k-0613",
                     },
 
