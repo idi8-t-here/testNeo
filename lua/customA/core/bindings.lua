@@ -15,12 +15,6 @@ vim.keymap.set("v", ";;", "<ESC>")
 vim.keymap.set("n", "<Tab>i", ":bnext<CR>")
 vim.keymap.set("n", "<Tab>k", ":bprevious<CR>")
 
---Navigate splits
-vim.keymap.set("n", "<S-h>", "<C-w>h")
-vim.keymap.set("n", "<S-l>", "<C-w>l")
-vim.keymap.set("n", "<S-k>", "<C-w>k")
-vim.keymap.set("n", "<S-j>", "<C-w>j")
-
 --Code Block navigation
 vim.keymap.set("v", "<S-k>", ":m '>+1<CR>gv=gv", opts)
 vim.keymap.set("v", "<S-i>", ":m '<-2<CR>gv=gv", opts)
