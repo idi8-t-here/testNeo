@@ -32,3 +32,7 @@ vim.opt.updatetime = 50
 
 --to customize nvim cursor**
 vim.o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
+
+-- Set highlight groups for Cursor and iCursor
+vim.api.nvim_set_hl(0, 'Cursor', {fg = 'purple', bg = 'purple'})
+vim.api.nvim_set_hl(0, 'iCursor', {fg = 'purple', bg = 'purple'})
