@@ -25,7 +25,6 @@ local colors = {
   blue     = '#51afef',
   red      = '#ec5f67',
 }
-
 local conditions = {
   buffer_not_empty = function()
     return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -65,7 +64,7 @@ local config = {
     lualine_x = {},
   },
   inactive_sections = {
-    -- these are to remove the defaults
+    -- these are to remove the defaultslualie
     lualine_a = {},
     lualine_b = {},
     lualine_y = {},
