@@ -16,8 +16,8 @@ vim.keymap.set("n", "<Tab>i", ":bnext<CR>")
 vim.keymap.set("n", "<Tab>k", ":bprevious<CR>")
 
 --Code Block navigation
-vim.keymap.set("v", "<S-k>", ":m '>+1<CR>gv=gv", opts)
-vim.keymap.set("v", "<S-i>", ":m '<-2<CR>gv=gv", opts)
+vim.keymap.set("v", "<S-j>", ":m '>+1<CR>gv=gv", opts)
+vim.keymap.set("v", "<S-k>", ":m '<-2<CR>gv=gv", opts)
 
 --annoying shit {sigh...}
 vim.keymap.set("n", "G", "gg", opts)
@@ -98,8 +98,8 @@ vim.keymap.set("n", "m", '<cmd>lua require("goto-preview").goto_preview_definiti
 
 -- scrolling
 
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<M-k>", "<C-u>zz")
+vim.keymap.set("n", "<M-j>", "<C-d>zz")
 
 -- trouble
 
