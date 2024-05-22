@@ -68,6 +68,9 @@ return {
         lspconfig.dockerls.setup{}  -- Docker server setup
         lspconfig.sqlls.setup{}     -- SQL server setup
         lspconfig.terraformls.setup{} -- Terraform server setup
+        lspconfig.clangd.setup{} -- c++ server setup
+        lspconfig.cssls.setup{} -- css server setup
+        lspconfig.cssmodules_ls.setup{} -- c++ server setup
 
         -- Define additional autocmds if necessary, but avoid using invalid function calls
         vim.api.nvim_create_autocmd("FileType", {
