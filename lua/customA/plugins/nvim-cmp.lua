@@ -4,8 +4,8 @@ return {
     dependencies = {
         'ms-jpq/coq.thirdparty',
         "hrsh7th/cmp-path",
-        'ms-jpq/coq_nvim', 
-        'ms-jpq/coq.artifacts',     
+        'ms-jpq/coq_nvim',
+        'ms-jpq/coq.artifacts',
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "rafamadriz/friendly-snippets",
