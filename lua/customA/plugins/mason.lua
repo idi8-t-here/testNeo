@@ -70,7 +70,7 @@ return {
         lspconfig.terraformls.setup{} -- Terraform server setup
         lspconfig.clangd.setup{} -- c++ server setup
         lspconfig.cssls.setup{} -- css server setup
-        lspconfig.cssmodules_ls.setup{} -- c++ server setup
+        lspconfig.cssmodules_ls.setup{} -- cssmodules server setup
 
         -- Define additional autocmds if necessary, but avoid using invalid function calls
         vim.api.nvim_create_autocmd("FileType", {
