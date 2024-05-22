@@ -5,7 +5,17 @@ return {
         "BurntSushi/ripgrep",     
     },
     config = function()
-        
+
+        require('telescope').setup {
+            defaults = {
+                prompt_prefix = "󰼛 ",  
+                selection_caret = "󱞩 ",
+                border = true,
+                winblend = 5,
+            },
+
+        }
+
         --mappings
         local builtin = require('telescope.builtin')
         local themes = require('telescope.themes')
