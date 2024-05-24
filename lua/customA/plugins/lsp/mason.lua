@@ -4,8 +4,7 @@ return {
         'williamboman/mason-lspconfig.nvim',
         'mhartington/formatter.nvim',
         'jose-elias-alvarez/null-ls.nvim',
-        'mfussenegger/nvim-dap',
-        'rcarriga/nvim-dap-ui',
+        'jayp0521/mason-null-ls.nvim',
         'mfussenegger/nvim-lint',
         'neovim/nvim-lspconfig',
     },
@@ -19,41 +18,10 @@ return {
                     package_uninstalled = "✗"
                 }
             },
-            ensure_installed = {
-                'golangci-lint',
-                'bash-language-server',
-                'lua-language-server',
-                'vim-language-server',
-                'gopls',
-                'stylua',
-                'shellcheck',
-                'sqlfmt',
-                'editorconfig-checker',
-                'gofumpt',
-                'golines',
-                'gomodifytags',
-                'gotests',
-                'goimports',
-                'impl',
-                'json-to-struct',
-                'jq',
-                'misspell',
-                'revive',
-                'shellcheck',
-                'shfmt',
-                'staticcheck',
-                'vint',
-                'yamllint',
-                'yamlfmt',
-                'yamlls',
-                'hadolint',
-                'dockerls',
-                'diagnosticls',
-                'sqlls',
-                'terraformls',
-                'delve'
-            }
         })
+
+        --to stop the annoying undefined global var messages when editing nvim config
+        _G.vim = vim
 
         -- Ensure language servers are set up
         local lspconfig = require("lspconfig")

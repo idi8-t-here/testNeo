@@ -7,10 +7,6 @@ vim.keymap.set("n", "<leader>rw", vim.cmd.Ex)
 -- cmdline entry
 vim.keymap.set("n", ";", ":")
 
--- Mode Navigation
-vim.keymap.set("i", ";;", "<ESC>")
-vim.keymap.set("v", ";;", "<ESC>")
-
 -- Navigate buffers
 vim.keymap.set("n", "<Tab>i", ":bnext<CR>")
 vim.keymap.set("n", "<Tab>k", ":bprevious<CR>")
@@ -87,8 +83,8 @@ vim.keymap.set("n", "gpr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 vim.keymap.set("n", "gpi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
 vim.keymap.set("n", "M", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 vim.keymap.set("n", "T", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-vim.keymap.set("n", "Ne", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-vim.keymap.set("n", "ne", '<cmd>lua vim.diagnostic.goto_next({border="rounded"})<CR>', opts)
+vim.keymap.set("n", "[e", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
+vim.keymap.set("n", "]e", '<cmd>lua vim.diagnostic.goto_next({border="rounded"})<CR>', opts)
 vim.keymap.set("n", "gl", "<cmd>lua vim.lsp.diagnostic.open_float()<CR>", opts)
 
 vim.keymap.set("n", "gx", '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)

@@ -13,4 +13,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require("lazy").setup("customA.plugins")
+require("lazy").setup({
+    {import = "customA.plugins"},
+    {import = "customA.plugins.lsp"}
+})
