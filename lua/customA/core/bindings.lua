@@ -52,9 +52,9 @@ vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>p", '"+p')
 
 --Tmux Navigation
-vim.keymap.set("n", "<M-j>", "<cmd> TmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<M-k>", "<cmd> TmuxNavigateDown<CR>")
-vim.keymap.set("n", "<M-i>", "<cmd> TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<M-h>", "<cmd> TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<M-j>", "<cmd> TmuxNavigateDown<CR>")
+vim.keymap.set("n", "<M-k>", "<cmd> TmuxNavigateUp<CR>")
 vim.keymap.set("n", "<M-l>", "<cmd> TmuxNavigateRight<CR>")
 
 -- debugging
@@ -94,8 +94,8 @@ vim.keymap.set("n", "m", '<cmd>lua require("goto-preview").goto_preview_definiti
 
 -- scrolling
 
-vim.keymap.set("n", "<M-k>", "<C-u>zz")
-vim.keymap.set("n", "<M-j>", "<C-d>zz")
+vim.keymap.set("n", "<C-Up>", "<C-u>zz")
+vim.keymap.set("n", "<C-Down>", "<C-d>zz")
 
 -- trouble
 

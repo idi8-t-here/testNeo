@@ -2,13 +2,13 @@ return {
     "nvim-telescope/telescope.nvim", tag = '0.1.6' ,
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "BurntSushi/ripgrep",     
+        "BurntSushi/ripgrep",
     },
     config = function()
 
         require('telescope').setup {
             defaults = {
-                prompt_prefix = "󰼛 ",  
+                prompt_prefix = "󰼛 ",
                 selection_caret = "󱞩 ",
                 border = true,
                 winblend = 5,
@@ -18,7 +18,6 @@ return {
 
         --mappings
         local builtin = require('telescope.builtin')
-        local themes = require('telescope.themes')
 
         vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
         vim.keymap.set('n', '<leader>jj', builtin.git_files, {})

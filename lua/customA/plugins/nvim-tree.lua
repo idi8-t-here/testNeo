@@ -1,5 +1,5 @@
 return {
-	"nvim-tree/nvim-tree.lua", 
+	"nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
         dependecies = {

@@ -178,8 +178,8 @@ ins_left {
     end
     return msg
   end,
-  icon = ' LSP:',
-  color = { fg = '#ffffff', gui = 'bold' },
+  icon = ' LSP: 󰼛󰼛',
+  color = { fg = 'yellow', gui = 'bold' },
 }
 
 -- Add components to right sections
