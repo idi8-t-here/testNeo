@@ -1,7 +1,4 @@
-return {
-        "svermeulen/text-to-colorscheme.nvim",
-        config = function ()
-            require('text-to-colorscheme').setup {
+ require('text-to-colorscheme').setup {
                 ai = {
                        openai_api_key = "openai_api_key",
                         gpt_model = "gpt-3.5-turbo-0613",
@@ -26,5 +23,3 @@ return {
                         }
                     }
                 }
-        end,
-}

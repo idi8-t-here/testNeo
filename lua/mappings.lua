@@ -1,3 +1,7 @@
+require "nvchad.mappings"
+
+-- add yours here
+
 local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 
@@ -104,3 +108,9 @@ vim.keymap.set("n", "<leader>tl", "<cmd>TroubleToggle<cr>", opts)
 --wrapping
 vim.keymap.set("n", "<M-z>", "<cmd>set wrap!<CR>", opts)
 
+--nvim new features(v0.10)
+vim.keymap.set("n","<leader>ih",function ()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)
+
+-- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
