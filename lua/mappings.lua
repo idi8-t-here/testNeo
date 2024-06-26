@@ -9,7 +9,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>rw", vim.cmd.Ex)
 
 -- cmdline entry
-vim.keymap.set("n", ";", ":")
+-- vim.keymap.set("n", ";", ":")
 
 -- Navigate buffers
 vim.keymap.set("n", "<Tab>i", ":bnext<CR>")
@@ -94,7 +94,7 @@ vim.keymap.set("n", "gl", "<cmd>lua vim.lsp.diagnostic.open_float()<CR>", opts)
 vim.keymap.set("n", "gx", '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)
 vim.keymap.set("n", "gr", '<cmd>lua require("goto-preview").goto_preview_references()<CR>', opts)
 vim.keymap.set("n", "gi", '<cmd>lua require("goto-preview").goto_preview_implementation()<CR>', opts)
-vim.keymap.set("n", "m", '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', opts)
+-- vim.keymap.set("n", "m", '<cmd>lua require("goto-preview").goto_preview_definition()<CR>', opts)
 
 -- scrolling
 
