@@ -18,9 +18,27 @@ return {
     end,
   },
 
+  --used for testing purposes[rust debuggin], shows which section of code's test failed or ran 
+    {
+      'mrcjkb/rustaceanvim',
+      version = '^5', -- Recommended
+      lazy = false, -- This plugin is already lazy
+    },
+
+    {
+      "nvim-neotest/neotest",
+      dependencies = {
+        "nvim-neotest/nvim-nio",
+        "nvim-lua/plenary.nvim",
+        "antoinemadec/FixCursorHold.nvim",
+        "nvim-treesitter/nvim-treesitter"
+      }
+    },
+
   {
         --text2Colorscheme plugin//doesnt really work tho
     "svermeulen/text-to-colorscheme.nvim",
+    lazy = false,
     config = function()
       require "configs.text2Colorscheme"
     end,

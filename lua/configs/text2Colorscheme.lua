@@ -1,7 +1,7 @@
  require('text-to-colorscheme').setup {
                 ai = {
-                       openai_api_key = "openai_api_key",
-                        gpt_model = "gpt-3.5-turbo-0613",
+                       openai_api_key = "hi there junkeys",
+                        -- gpt_model = "gpt-4o",
                     },
 
                 default_palette = "draculass",

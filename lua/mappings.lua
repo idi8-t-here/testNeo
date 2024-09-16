@@ -24,6 +24,9 @@ vim.keymap.set("n", "G", "gg", opts)
 vim.keymap.set("n", "gg", "G", opts)
 vim.keymap.set("v", "G", "gg", opts)
 vim.keymap.set("v", "gg", "G", opts)
+    -- Remap > and < to keep visual mode after indenting
+    vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
+    vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
 
 for i = 0, 999 do
     --delete
@@ -52,14 +55,15 @@ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 vim.keymap.set("n", "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>p", '"+p')
 
-vim.keymap.set("v", "<leader>y", '"+y')
+            vim.keymap.set("v", "<leader>y", '"+y')
 vim.keymap.set("v", "<leader>p", '"+p')
 
---Tmux Navigation
-vim.keymap.set("n", "<M-h>", "<cmd> TmuxNavigateLeft<CR>")
-vim.keymap.set("n", "<M-j>", "<cmd> TmuxNavigateDown<CR>")
-vim.keymap.set("n", "<M-k>", "<cmd> TmuxNavigateUp<CR>")
-vim.keymap.set("n", "<M-l>", "<cmd> TmuxNavigateRight<CR>")
+-- Tmux Navigation(no longer needed, use nvim to multiplex my terminal nowadays)
+
+-- vim.keymap.set("n", "<M-h>", "<cmd> TmuxNavigateLeft<CR>")
+-- vim.keymap.set("n", "<M-j>", "<cmd> TmuxNavigateDown<CR>")
+-- vim.keymap.set("n", "<M-k>", "<cmd> TmuxNavigateUp<CR>")
+-- vim.keymap.set("n", "<M-l>", "<cmd> TmuxNavigateRight<CR>")
 
 -- debugging
 vim.keymap.set("n", "<M-b>", '<cmd>lua require("dap").continue()<CR>', opts)
@@ -79,6 +83,7 @@ vim.keymap.set("n", "ts", ":tab split<CR>")
 vim.keymap.set("n", "tv", ":tab vsplit<CR>")
 
 --commenting
+-- not needed in nvim version 0.10
 
 --lsp binds
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -89,7 +94,7 @@ vim.keymap.set("n", "M", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 vim.keymap.set("n", "T", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 vim.keymap.set("n", "[e", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 vim.keymap.set("n", "]e", '<cmd>lua vim.diagnostic.goto_next({border="rounded"})<CR>', opts)
-vim.keymap.set("n", "gl", "<cmd>lua vim.lsp.diagnostic.open_float()<CR>", opts)
+vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 
 vim.keymap.set("n", "gx", '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)
 vim.keymap.set("n", "gr", '<cmd>lua require("goto-preview").goto_preview_references()<CR>', opts)
