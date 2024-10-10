@@ -114,6 +114,7 @@ return {
   {
         -- for git pr managment integration 
     "ldelossa/gh.nvim",
+    lazy = false,
     dependencies = {
         {
         "ldelossa/litee.nvim",
@@ -125,5 +126,10 @@ return {
     config = function()
         require("litee.gh").setup()
     end,
-  }
+  },
+
+  {
+        --for smart nvim split navigation and resizing aswell
+        "mrjones2014/smart-splits.nvim"
+  },
 }
