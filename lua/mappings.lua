@@ -11,6 +11,31 @@ vim.keymap.set("n", "<leader>rw", vim.cmd.Ex)
 -- cmdline entry
 -- vim.keymap.set("n", ";", ":")
 
+--Cursor Navigation
+local keymap = vim.keymap.set
+local last_e_time = nil
+local double_e_timeout = 200  -- Timeout in milliseconds
+
+keymap('n', 'e', function()
+  local current_time = vim.loop.now()  -- Get the current time in milliseconds
+
+  if last_e_time and (current_time - last_e_time < double_e_timeout) then
+    -- If the second 'e' is pressed within the timeout, execute 'ge'
+    vim.cmd('normal! ge')
+    last_e_time = nil  -- Reset the timer
+  else
+    -- If this is the first 'e', defer execution to check for a second 'e'
+    last_e_time = current_time
+    vim.defer_fn(function()
+      -- After the timeout, if no second 'e' was pressed, perform the normal 'e'
+      if last_e_time then
+        vim.cmd('normal! e')
+        last_e_time = nil
+      end
+    end, double_e_timeout)
+  end
+end)
+
 -- Navigate buffers
 vim.keymap.set("n", "<Tab>i", ":bnext<CR>")
 vim.keymap.set("n", "<Tab>k", ":bprevious<CR>")
@@ -85,6 +110,27 @@ vim.keymap.set("n", "tv", ":tab vsplit<CR>")
 --commenting
 -- not needed in nvim version 0.10
 
+-- Function to enter the floating window if one is open
+local function enter_float_if_open()
+  -- Get all open windows
+  local current_win = vim.api.nvim_get_current_win()
+  local float_win = nil
+  for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      -- A floating window is found
+      float_win = win
+      break
+    end
+  end
+  -- If a floating window is open, move cursor into it
+  if float_win then
+    vim.api.nvim_set_current_win(float_win)
+  else
+    print("No floating window to enter")
+  end
+end
+
 --lsp binds
 vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -94,7 +140,7 @@ vim.keymap.set("n", "M", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
 vim.keymap.set("n", "T", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
 vim.keymap.set("n", "[e", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
 vim.keymap.set("n", "]e", '<cmd>lua vim.diagnostic.goto_next({border="rounded"})<CR>', opts)
-vim.keymap.set("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+vim.keymap.set("n", "gl", enter_float_if_open, { noremap = true, silent = true })
 
 vim.keymap.set("n", "gx", '<cmd>lua require("goto-preview").close_all_win()<CR>', opts)
 vim.keymap.set("n", "gr", '<cmd>lua require("goto-preview").goto_preview_references()<CR>', opts)
@@ -135,3 +181,24 @@ vim.keymap.set('n', '<leader><leader>h', require('smart-splits').swap_buf_left)
 vim.keymap.set('n', '<leader><leader>j', require('smart-splits').swap_buf_down)
 vim.keymap.set('n', '<leader><leader>k', require('smart-splits').swap_buf_up)
 vim.keymap.set('n', '<leader><leader>l', require('smart-splits').swap_buf_right)
+
+-- for nvim-spectre
+vim.keymap.set('n', '<leader>ts', '<cmd>lua require("spectre").toggle()<CR>', {
+    desc = "Toggle Spectre"
+})
+vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+    desc = "Search current word"
+})
+vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+    desc = "Search on current file"
+})
+
+-- for nvim custom snippets
+vim.keymap.set("n", "<leader>le", function() require("scissors").editSnippet() end)
+
+-- when used in visual mode, prefills the selection as snippet body
+vim.keymap.set({ "n", "x" }, "<leader>la", function() require("scissors").addNewSnippet() end)
+

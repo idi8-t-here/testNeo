@@ -1,0 +1,1 @@
+{"div":{"prefix":"divs","body":["<div className=\"${1:}\">","  ${2:content_here}","<\/div>"]},"spans":{"prefix":"spans","body":["<span className='${1:}'>","  ${2:content_here}","<\/span>"]}}

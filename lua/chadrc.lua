@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-	theme = "gruvbox",
+	theme = "oxocarbon",
     statusline = {
         theme = "minimal",
         separator_style = "round"

@@ -16,7 +16,7 @@ lspconfig[lsp].setup {
 end
 
 -- typescript
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
@@ -42,3 +42,23 @@ lspconfig.tailwindcss.setup {
     on_init = on_init,
     capabilities = capabilities,
 }
+
+-- markdown language server
+lspconfig.markdown_oxide.setup {
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+}
+
+-- basic_ls language server
+lspconfig.basics_ls.setup({
+    on_attach = on_attach,
+    on_init = on_init,
+    capabilities = capabilities,
+          settings = {
+            snippet = {
+              enable = true,
+              sources = { vim.fn.stdpath("config") .. "/snippets" },
+            },
+          },
+      })
