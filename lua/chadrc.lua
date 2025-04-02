@@ -5,10 +5,10 @@
 local M = {}
 
 M.ui = {
-	theme = "oxocarbon",
+	theme = "monekai",
     statusline = {
         theme = "minimal",
-        separator_style = "round"
+        separator_style = "block",
     }
 
 	-- hl_override = {

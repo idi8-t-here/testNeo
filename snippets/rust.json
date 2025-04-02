@@ -1,1 +1,1 @@
-{"this":{"body":"this ${1:\"nigga\"}","prefix":"this"},"derive":{"body":"#[derive(${1:}, ${2:}, ${3:})]","prefix":"derive"}}
+{"derive":{"body":"#[derive(${1:},${2:})]","prefix":"derive"},"this":{"body":"this ${1:\"nigga\"}","prefix":"this"},"fn":{"body":["fn $1 ($2) -> $3 {","    $4","}"],"prefix":"fn"},"struct":{"body":["struct ${1:Name} {","    ${2:elem}: ${3:type},","    ${4:elem}: ${5:type},","}"],"prefix":"struct"}}
