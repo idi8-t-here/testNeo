@@ -1,5 +1,7 @@
 require('render-markdown').setup({
-    render_modes = { 'n', 'c' },
+    -- priority = 1000,
+    completions = { blink = { enabled = true } },
+    render_modes = { 'n', 'c', 'i'},
     present = 'none',
     enabled = true,
     injections = {

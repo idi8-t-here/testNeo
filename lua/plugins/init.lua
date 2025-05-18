@@ -1,15 +1,12 @@
 return {
   {
-    -- formatter i guess
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
     config = function()
       require "configs.conform"
     end,
   },
 
   {
-    --lsp
     "neovim/nvim-lspconfig",
     config = function()
       require("nvchad.configs.lspconfig").defaults()
@@ -18,7 +15,6 @@ return {
   },
 
   {
-    -- rust debugging
     'mrcjkb/rustaceanvim',
     version = '^5',
     lazy = false,
@@ -31,12 +27,19 @@ return {
       "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter"
-    }
+      "nvim-treesitter/nvim-treesitter",
+      "rouge8/neotest-rust" -- Correct repository for Rust support
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-rust"), -- Enable Rust testing
+        },
+      })
+    end,
   },
 
   {
-    -- text2Colorscheme plugin
     "svermeulen/text-to-colorscheme.nvim",
     lazy = false,
     config = function()
@@ -45,7 +48,6 @@ return {
   },
 
   {
-    -- undotree
     "mbbill/undotree",
     event = "VeryLazy",
     config = function()
@@ -54,13 +56,12 @@ return {
   },
 
   {
-    -- flash plugin
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+      { "4", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "8", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
@@ -68,7 +69,6 @@ return {
   },
 
   {
-    -- language package manager
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
@@ -79,36 +79,20 @@ return {
   },
 
   {
-    -- lazygit plugin
     "kdheepak/lazygit.nvim",
-    cmd = {
-      "LazyGit",
-      "LazyGitConfig",
-      "LazyGitCurrentFile",
-      "LazyGitFilter",
-      "LazyGitFilterCurrentFile",
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    keys = {
-      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
+    cmd = { "LazyGit", "LazyGitConfig", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = { { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" } }
   },
 
   {
-    -- treesitter
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      ensure_installed = {
-        "vim", "lua", "vimdoc",
-        "html", "css"
-      },
+      ensure_installed = { "vim", "lua", "vimdoc", "html", "css" },
     },
   },
 
   {
-    -- git pr management
     "ldelossa/gh.nvim",
     lazy = false,
     dependencies = {
@@ -124,77 +108,65 @@ return {
     end,
   },
 
-  {
-    -- smart splits
-    "mrjones2014/smart-splits.nvim"
-  },
+  { "mrjones2014/smart-splits.nvim" },
+
+  -- Render Markdown replacment
+  -- {
+  --     "OXY2DEV/markview.nvim",
+  --     lazy = false,
+  --
+  --     -- For blink.cmp's completion
+  --     -- source
+  --     dependencies = {
+  --         "saghen/blink.cmp"
+  --     },
+  -- },
 
   {
-    -- markdown rendering
     'MeanderingProgrammer/render-markdown.nvim',
-    ft = 'markdown',
+    -- event = "BufReadPre",
+    ft = "markdown",
     priority = 1000,
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'echasnovski/mini.nvim',
-      {
-        'L3MON4D3/LuaSnip',
-        config = function()
-          require("luasnip").config.setup({
-            region_check_events = 'InsertEnter',
-            delete_check_events = 'InsertLeave',
-          })
-          -- Only load non-markdown snippets here
-          require("luasnip.loaders.from_vscode").lazy_load({
-            paths = { vim.fn.stdpath("config") .. "/snippets" },
-            exclude = { 'markdown' }
-          })
-        end,
-      }
+      'saghen/blink.cmp'
     },
     opts = {
       snippets = {
         enable = true,
         engine = "luasnip",
-        path = vim.fn.stdpath("config") .. "/snippets/markdown",
+        path = {
+          vim.fn.stdpath("config") .. "/snippets",
+          vim.fn.stdpath("config") .. "/snippets/markdown"
+        },
       }
-    },
+    }
   },
 
-  {
-    -- spectre
-    "nvim-pack/nvim-spectre"
-  },
+  { "nvim-pack/nvim-spectre" },
 
   {
-    -- autotag
     "windwp/nvim-ts-autotag",
     opts = {
       enable_close = true,
       enable_rename = true,
       enable_close_on_slash = false,
       per_filetype = {
-        ["html"] = {
-          enable_close = true,
-        },
-        ["javascriptreact"] = {
-          enable_close = true,
-        },
-        ["typescriptreact"] = {
-          enable_close = true,
-        },
+        ["html"] = { enable_close = true },
+        ["javascriptreact"] = { enable_close = true },
+        ["typescriptreact"] = { enable_close = true },
       }
     }
   },
 
   {
-    -- snippet engine (configured earlier for markdown)
     "L3MON4D3/LuaSnip",
+    dependencies = { "rafamadriz/friendly-snippets" }, -- optional, for more snippets
     event = "VeryLazy",
   },
 
   {
-    -- AI plugin
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false,
@@ -227,9 +199,7 @@ return {
           default = {
             embed_image_as_base64 = false,
             prompt_for_file_name = false,
-            drag_and_drop = {
-              insert_mode = true,
-            },
+            drag_and_drop = { insert_mode = true },
             use_absolute_path = true,
           },
         },
@@ -239,20 +209,43 @@ return {
 
   {
     "chrisgrieser/nvim-scissors",
-    event = "VeryLazy",
-    opts = {
-      snippetDir = vim.fn.stdpath("config") .. "/snippets",
-    },
-    config = function(_, opts)
-      require("scissors").setup(opts)
-      
-      -- Manually disable for markdown
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "markdown",
-        callback = function()
-          vim.b.scissors_disable = true  -- Disable scissors for markdown
-        end,
-      })
-    end,
-  }
+      event = "VeryLazy",
+      dependencies = "nvim-telescope/telescope.nvim", -- if using telescope
+      opts = {
+        snippetDir = vim.fn.stdpath("config") .. "/snippets",
+      },
+  },
+
+  {
+      'saecki/crates.nvim',
+      tag = 'stable',
+      config = function()
+          require('crates').setup()
+      end,
+  },
+
+  {
+      "kylechui/nvim-surround",
+      version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
+  },
+
+  {
+      "sontungexpt/url-open",
+      event = "VeryLazy",
+      cmd = "URLOpenUnderCursor",
+      config = function()
+          local status_ok, url_open = pcall(require, "url-open")
+          if not status_ok then
+              return
+          end
+          url_open.setup ({})
+      end,
+  },
+
 }

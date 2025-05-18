@@ -1,12 +1,15 @@
 require "nvchad.mappings"
 
--- add yours here
 
+-- add yours here
 local opts = { noremap = true, silent = true }
 vim.g.mapleader = " "
 
 -- .netrw configs
 vim.keymap.set("n", "<leader>rw", vim.cmd.Ex)
+vim.keymap.set("n", "md", function()
+  vim.cmd("set filetype=markdown")
+end, { desc = "Set filetype to markdown" })
 
 -- cmdline entry
 -- vim.keymap.set("n", ";", ":")
@@ -162,7 +165,7 @@ vim.keymap.set("n", "<M-z>", "<cmd>set wrap!<CR>", opts)
 --nvim new features(v0.10)
 vim.keymap.set("n","<leader>ih",function ()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end)
+end, { desc = "inlay hints(like vscode)" })
 
 --For splits resizing and navigation
 -- { for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)` }
@@ -198,7 +201,59 @@ vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search(
 
 -- for nvim custom snippets
 vim.keymap.set("n", "<leader>le", function() require("scissors").editSnippet() end)
-
--- when used in visual mode, prefills the selection as snippet body
 vim.keymap.set({ "n", "x" }, "<leader>la", function() require("scissors").addNewSnippet() end)
 
+--for neotest
+vim.keymap.set("n", "<leader>ii", function()
+  require("neotest").watch.toggle(vim.fn.expand("%"))  -- Toggle watch on current file
+end, { desc = "Toggle Test Watch (File)" })
+
+vim.keymap.set("n", "<leader>iu", function()
+  require("neotest").run.run()  -- Run test under cursor (default behavior)
+end, { desc = "Run Test (Under Cursor)" })
+
+vim.keymap.set("n", "<leader>io", function()
+  require("neotest").run.stop()  -- Stop the current test run
+end, { desc = "Stop Test Run" })
+
+vim.keymap.set("n", "<leader>is", function()
+  require("neotest").summary.toggle()  -- Toggle test summary panel
+end, { desc = "Toggle Test Summary" })
+
+vim.keymap.set("n", "<leader>ia", function()
+  require("neotest").run.run(vim.fn.expand("%"))  -- Run all tests in current file
+end, { desc = "Run All Tests in File" })
+
+--custom mapping for rustfmt
+vim.keymap.set("n", "<leader>rf", '<cmd>RustFmt<CR>', {
+    desc = "Rust Formatter"
+})
+
+--for crates.toml plugin
+local crates = require("crates")
+
+vim.keymap.set("n", "<leader>ct", crates.toggle, { desc = "Toggle Crates" })
+vim.keymap.set("n", "<leader>cr", crates.reload, { desc = "Reload Crates" })
+
+vim.keymap.set("n", "<leader>cv", crates.show_versions_popup, { desc = "Show Versions Popup" })
+vim.keymap.set("n", "<leader>cf", crates.show_features_popup, { desc = "Show Features Popup" })
+vim.keymap.set("n", "<leader>cd", crates.show_dependencies_popup, { desc = "Show Dependencies Popup" })
+
+vim.keymap.set("n", "<leader>cu", crates.update_crate, { desc = "Update Crate" })
+vim.keymap.set("v", "<leader>cu", crates.update_crates, { desc = "Update Selected Crates" })
+vim.keymap.set("n", "<leader>ca", crates.update_all_crates, { desc = "Update All Crates" })
+vim.keymap.set("n", "<leader>cU", crates.upgrade_crate, { desc = "Upgrade Crate" })
+vim.keymap.set("v", "<leader>cU", crates.upgrade_crates, { desc = "Upgrade Selected Crates" })
+vim.keymap.set("n", "<leader>cA", crates.upgrade_all_crates, { desc = "Upgrade All Crates" })
+
+vim.keymap.set("n", "<leader>cx", crates.expand_plain_crate_to_inline_table, { desc = "Expand Crate Inline" })
+vim.keymap.set("n", "<leader>cX", crates.extract_crate_into_table, { desc = "Extract Crate to Table" })
+
+vim.keymap.set("n", "<leader>cH", crates.open_homepage, { desc = "Open Homepage" })
+vim.keymap.set("n", "<leader>cR", crates.open_repository, { desc = "Open Repository" })
+vim.keymap.set("n", "<leader>cD", crates.open_documentation, { desc = "Open Documentation" })
+vim.keymap.set("n", "<leader>cC", crates.open_crates_io, { desc = "Open crates.io" })
+vim.keymap.set("n", "<leader>cL", crates.open_lib_rs, { desc = "Open lib.rs" })
+
+-- for url opening plugin
+vim.keymap.set("n", "gx", "<esc>:URLOpenUnderCursor<cr>")

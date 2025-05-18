@@ -23,11 +23,20 @@ lspconfig.ts_ls.setup {
 }
 
 -- rust_analyzer
-lspconfig.rust_analyzer.setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-}
+lspconfig.rust_analyzer.setup({
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      completion = {
+        snippets = {
+          enable = true,
+        },
+      },
+    },
+  },
+})
 
 -- lua language server
 lspconfig.lua_ls.setup {

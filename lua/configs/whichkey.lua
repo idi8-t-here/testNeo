@@ -1,11 +1,22 @@
--- Assuming you have which-key installed and configured
 local wk = require("which-key")
 
--- Register keybindings with descriptions
+wk.setup({
+  notify = false, -- disable warnings
+})
+
+-- Updated which-key definitions using the new format
 wk.register({
-  l = {
-    name = "Scissors",  -- This will group the commands under 'l' as 'Scissors'
-    e = { "<cmd>lua require('scissors').editSnippet()<cr>", "Edit Snippet" },
-    a = { "<cmd>lua require('scissors').addNewSnippet()<cr>", "Add New Snippet" },
-  },
-}, { prefix = "<leader>" })
+  { "<leader>l", group = "Snippets" },
+  { "<leader>la", desc = "Add New Snippet" },
+  { "<leader>le", desc = "Edit Snippet" },
+})
+
+wk.register({
+  { "<leader>i", group = "Neotest..." },
+  { "<leader>ia", desc = "Run Test (all) - [Neotest]" },
+  { "<leader>ih", desc = "Inlay Hints" },
+  { "<leader>ii", desc = "Toggle Watch - [Neotest]" },
+  { "<leader>io", desc = "Stop Test - [Neotest]" },
+  { "<leader>is", desc = "Test Summary - [Neotest]" },
+  { "<leader>iu", desc = "Run Test (on-cursor) - [Neotest]" },
+})

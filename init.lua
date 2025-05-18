@@ -35,11 +35,51 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
+-- Ensure whichkey config is loaded
+require("configs.whichkey")
+require("configs.markdown")
+require("configs.crates")
+-- require("configs.scissors")
+
+-- require("configs.cmp")
+-- require("configs.luasnip")
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
+
+vim.filetype.add({
+  extension = {
+    md = "markdown",
+  },
+})
+
+vim.filetype.add({
+  extension = {
+    md = "markdown",
+    markdown = "markdown",
+  },
+  filename = {
+    ["README"] = "markdown",
+    ["README.md"] = "markdown",
+  },
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufRead", "BufNewFile" }, {
+  pattern = { "*.md", "*.markdown", "README", "README.*" },
+  callback = function()
+    vim.bo.filetype = "markdown"
+  end,
+})
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+  pattern = "*.md",
+  callback = function()
+    vim.cmd("setfiletype markdown")
+  end,
+})
 
 vim.schedule(function()
   require "mappings"

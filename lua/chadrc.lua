@@ -5,7 +5,7 @@
 local M = {}
 
 M.ui = {
-	theme = "monekai",
+	theme = "gruvbox",
     statusline = {
         theme = "minimal",
         separator_style = "block",
